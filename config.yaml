@@ -1,0 +1,665 @@
+# Planck-style keyboard, MX-spaced, 4x12 grid
+# Bottom row: 1u, 1u, 1u, 1.5u, 1.5u, 1.5u, 1.5u, 1u, 1u, 1u (10 keys = 12u)
+# Per-key RGB (SK6812mini-e), EC11 rotary encoder in top-right corner
+# nRF52840 SuperMini MCU, battery connector, power switch, reset switch
+#
+# Uses ceoloide footprints for MCU/RGB/diode/rotary/power/reset/battery
+# and ergogen built-in mx for MX-spaced switches
+
+meta:
+  author: Unknown
+  version: v1.0.0
+
+units:
+  # MX spacing is 19.05mm (1U)
+  # u = 19 (ergogen default, used for key unit sizes)
+  # U = 19.05 (precise MX spacing, used for column spread/padding)
+
+points:
+  key:
+    padding: -U
+    spread: U
+  zones:
+    matrix:
+      anchor:
+        shift: [50, -42.85]
+      columns:
+        one:
+          key:
+            pin: P1
+          rows:
+            top:
+            home:
+            bottom:
+        two:
+          key:
+            pin: P0
+          rows:
+            top:
+            home:
+            bottom:
+        three:
+          key:
+            pin: P14
+          rows:
+            top:
+            home:
+            bottom:
+        four:
+          key:
+            pin: P20
+          rows:
+            top:
+            home:
+            bottom:
+        five:
+          key:
+            pin: P2
+          rows:
+            top:
+            home:
+            bottom:
+        six:
+          key:
+            pin: P3
+          rows:
+            top:
+            home:
+            bottom:
+        seven:
+          key:
+            pin: P4
+          rows:
+            top:
+            home:
+            bottom:
+        eight:
+          key:
+            pin: P5
+          rows:
+            top:
+            home:
+            bottom:
+        nine:
+          key:
+            pin: P6
+          rows:
+            top:
+            home:
+            bottom:
+        ten:
+          key:
+            pin: P7
+          rows:
+            top:
+            home:
+            bottom:
+        eleven:
+          key:
+            pin: P8
+          rows:
+            top:
+            home:
+            bottom:
+        twelve:
+          key:
+            pin: P9
+          rows:
+            top:
+            home:
+            bottom:
+    modrow:
+      anchor:
+        ref: matrix_one_bottom
+        shift: [0, -U]
+      columns:
+        one:
+          key:
+            spread: U
+            pin: P1
+          rows:
+            mod:
+        two:
+          key:
+            spread: U
+            pin: P0
+          rows:
+            mod:
+        three:
+          key:
+            spread: U
+            pin: P14
+          rows:
+            mod:
+        four:
+          key:
+            spread: 1.5U
+            pin: P20
+          rows:
+            mod:
+        five:
+          key:
+            spread: 1.5U
+            pin: P2
+          rows:
+            mod:
+        eight:
+          key:
+            spread: 1.5U
+            pin: P5
+          rows:
+            mod:
+        nine:
+          key:
+            spread: 1.5U
+            pin: P6
+          rows:
+            mod:
+        ten:
+          key:
+            spread: U
+            pin: P7
+          rows:
+            mod:
+        eleven:
+          key:
+            spread: U
+            pin: P8
+          rows:
+            mod:
+        twelve:
+          key:
+            spread: U
+            pin: P9
+          rows:
+            mod:
+
+outlines:
+  bounds:
+    - what: rectangle
+      where: true
+      size: [18, 18]
+      bound: true
+  panel:
+    - what: outline
+      name: bounds
+      fillet: 2.5
+
+pcbs:
+  main:
+    template: kicad8
+    outlines:
+      main:
+        outline: panel
+    footprints:
+
+      # === SWITCHES (ergogen built-in MX footprint) ===
+      # Column net = MCU pin (P1, P0, P14, P20, P2, P3, P4, P5, P6, P7, P8, P9)
+      # Row net = col_name_row_name (one_top, one_home, etc.) — unique per switch
+      switches:
+        what: mx
+        where: true
+        params:
+          from: "{{pin}}"
+          to: "{{colrow}}"
+          keycaps: true
+
+      # === DIODES (ceoloide THT SOD-123) ===
+      diodes:
+        what: ceoloide/diode_tht_sod123
+        where: true
+        adjust:
+          shift: [0, 9.5]
+        params:
+          from: "{{colrow}}"
+          to: "{{pin}}"
+          side: B
+          include_tht: true
+
+      # === PER-KEY RGB LEDs (ceoloide SK6812mini-e, snake chain) ===
+      led_1:
+        what: ceoloide/led_sk6812mini-e
+        where: matrix_one_top
+        adjust:
+          shift: [0, 5]
+        params:
+          P2: LED_1
+          P4: LED_DIN
+      led_2:
+        what: ceoloide/led_sk6812mini-e
+        where: matrix_one_home
+        adjust:
+          shift: [0, 5]
+        params:
+          P2: LED_2
+          P4: LED_1
+      led_3:
+        what: ceoloide/led_sk6812mini-e
+        where: matrix_one_bottom
+        adjust:
+          shift: [0, 5]
+        params:
+          P2: LED_3
+          P4: LED_2
+      led_4:
+        what: ceoloide/led_sk6812mini-e
+        where: modrow_one_mod
+        adjust:
+          shift: [0, 5]
+        params:
+          P2: LED_4
+          P4: LED_3
+      led_5:
+        what: ceoloide/led_sk6812mini-e
+        where: modrow_two_mod
+        adjust:
+          shift: [0, 5]
+        params:
+          P2: LED_5
+          P4: LED_4
+      led_6:
+        what: ceoloide/led_sk6812mini-e
+        where: matrix_two_bottom
+        adjust:
+          shift: [0, 5]
+        params:
+          P2: LED_6
+          P4: LED_5
+      led_7:
+        what: ceoloide/led_sk6812mini-e
+        where: matrix_two_home
+        adjust:
+          shift: [0, 5]
+        params:
+          P2: LED_7
+          P4: LED_6
+      led_8:
+        what: ceoloide/led_sk6812mini-e
+        where: matrix_two_top
+        adjust:
+          shift: [0, 5]
+        params:
+          P2: LED_8
+          P4: LED_7
+      led_9:
+        what: ceoloide/led_sk6812mini-e
+        where: matrix_three_top
+        adjust:
+          shift: [0, 5]
+        params:
+          P2: LED_9
+          P4: LED_8
+      led_10:
+        what: ceoloide/led_sk6812mini-e
+        where: matrix_three_home
+        adjust:
+          shift: [0, 5]
+        params:
+          P2: LED_10
+          P4: LED_9
+      led_11:
+        what: ceoloide/led_sk6812mini-e
+        where: matrix_three_bottom
+        adjust:
+          shift: [0, 5]
+        params:
+          P2: LED_11
+          P4: LED_10
+      led_12:
+        what: ceoloide/led_sk6812mini-e
+        where: modrow_three_mod
+        adjust:
+          shift: [0, 5]
+        params:
+          P2: LED_12
+          P4: LED_11
+      led_13:
+        what: ceoloide/led_sk6812mini-e
+        where: modrow_four_mod
+        adjust:
+          shift: [0, 5]
+        params:
+          P2: LED_13
+          P4: LED_12
+      led_14:
+        what: ceoloide/led_sk6812mini-e
+        where: matrix_four_bottom
+        adjust:
+          shift: [0, 5]
+        params:
+          P2: LED_14
+          P4: LED_13
+      led_15:
+        what: ceoloide/led_sk6812mini-e
+        where: matrix_four_home
+        adjust:
+          shift: [0, 5]
+        params:
+          P2: LED_15
+          P4: LED_14
+      led_16:
+        what: ceoloide/led_sk6812mini-e
+        where: matrix_four_top
+        adjust:
+          shift: [0, 5]
+        params:
+          P2: LED_16
+          P4: LED_15
+      led_17:
+        what: ceoloide/led_sk6812mini-e
+        where: matrix_five_top
+        adjust:
+          shift: [0, 5]
+        params:
+          P2: LED_17
+          P4: LED_16
+      led_18:
+        what: ceoloide/led_sk6812mini-e
+        where: matrix_five_home
+        adjust:
+          shift: [0, 5]
+        params:
+          P2: LED_18
+          P4: LED_17
+      led_19:
+        what: ceoloide/led_sk6812mini-e
+        where: matrix_five_bottom
+        adjust:
+          shift: [0, 5]
+        params:
+          P2: LED_19
+          P4: LED_18
+      led_20:
+        what: ceoloide/led_sk6812mini-e
+        where: modrow_five_mod
+        adjust:
+          shift: [0, 5]
+        params:
+          P2: LED_20
+          P4: LED_19
+      led_21:
+        what: ceoloide/led_sk6812mini-e
+        where: matrix_six_bottom
+        adjust:
+          shift: [0, 5]
+        params:
+          P2: LED_21
+          P4: LED_20
+      led_22:
+        what: ceoloide/led_sk6812mini-e
+        where: matrix_six_home
+        adjust:
+          shift: [0, 5]
+        params:
+          P2: LED_22
+          P4: LED_21
+      led_23:
+        what: ceoloide/led_sk6812mini-e
+        where: matrix_six_top
+        adjust:
+          shift: [0, 5]
+        params:
+          P2: LED_23
+          P4: LED_22
+      led_24:
+        what: ceoloide/led_sk6812mini-e
+        where: matrix_seven_top
+        adjust:
+          shift: [0, 5]
+        params:
+          P2: LED_24
+          P4: LED_23
+      led_25:
+        what: ceoloide/led_sk6812mini-e
+        where: matrix_seven_home
+        adjust:
+          shift: [0, 5]
+        params:
+          P2: LED_25
+          P4: LED_24
+      led_26:
+        what: ceoloide/led_sk6812mini-e
+        where: matrix_seven_bottom
+        adjust:
+          shift: [0, 5]
+        params:
+          P2: LED_26
+          P4: LED_25
+      led_27:
+        what: ceoloide/led_sk6812mini-e
+        where: modrow_eight_mod
+        adjust:
+          shift: [0, 5]
+        params:
+          P2: LED_27
+          P4: LED_26
+      led_28:
+        what: ceoloide/led_sk6812mini-e
+        where: matrix_eight_bottom
+        adjust:
+          shift: [0, 5]
+        params:
+          P2: LED_28
+          P4: LED_27
+      led_29:
+        what: ceoloide/led_sk6812mini-e
+        where: matrix_eight_home
+        adjust:
+          shift: [0, 5]
+        params:
+          P2: LED_29
+          P4: LED_28
+      led_30:
+        what: ceoloide/led_sk6812mini-e
+        where: matrix_eight_top
+        adjust:
+          shift: [0, 5]
+        params:
+          P2: LED_30
+          P4: LED_29
+      led_31:
+        what: ceoloide/led_sk6812mini-e
+        where: matrix_nine_top
+        adjust:
+          shift: [0, 5]
+        params:
+          P2: LED_31
+          P4: LED_30
+      led_32:
+        what: ceoloide/led_sk6812mini-e
+        where: matrix_nine_home
+        adjust:
+          shift: [0, 5]
+        params:
+          P2: LED_32
+          P4: LED_31
+      led_33:
+        what: ceoloide/led_sk6812mini-e
+        where: matrix_nine_bottom
+        adjust:
+          shift: [0, 5]
+        params:
+          P2: LED_33
+          P4: LED_32
+      led_34:
+        what: ceoloide/led_sk6812mini-e
+        where: modrow_nine_mod
+        adjust:
+          shift: [0, 5]
+        params:
+          P2: LED_34
+          P4: LED_33
+      led_35:
+        what: ceoloide/led_sk6812mini-e
+        where: modrow_ten_mod
+        adjust:
+          shift: [0, 5]
+        params:
+          P2: LED_35
+          P4: LED_34
+      led_36:
+        what: ceoloide/led_sk6812mini-e
+        where: matrix_ten_bottom
+        adjust:
+          shift: [0, 5]
+        params:
+          P2: LED_36
+          P4: LED_35
+      led_37:
+        what: ceoloide/led_sk6812mini-e
+        where: matrix_ten_home
+        adjust:
+          shift: [0, 5]
+        params:
+          P2: LED_37
+          P4: LED_36
+      led_38:
+        what: ceoloide/led_sk6812mini-e
+        where: matrix_ten_top
+        adjust:
+          shift: [0, 5]
+        params:
+          P2: LED_38
+          P4: LED_37
+      led_39:
+        what: ceoloide/led_sk6812mini-e
+        where: matrix_eleven_top
+        adjust:
+          shift: [0, 5]
+        params:
+          P2: LED_39
+          P4: LED_38
+      led_40:
+        what: ceoloide/led_sk6812mini-e
+        where: matrix_eleven_home
+        adjust:
+          shift: [0, 5]
+        params:
+          P2: LED_40
+          P4: LED_39
+      led_41:
+        what: ceoloide/led_sk6812mini-e
+        where: matrix_eleven_bottom
+        adjust:
+          shift: [0, 5]
+        params:
+          P2: LED_41
+          P4: LED_40
+      led_42:
+        what: ceoloide/led_sk6812mini-e
+        where: modrow_eleven_mod
+        adjust:
+          shift: [0, 5]
+        params:
+          P2: LED_42
+          P4: LED_41
+      led_43:
+        what: ceoloide/led_sk6812mini-e
+        where: modrow_twelve_mod
+        adjust:
+          shift: [0, 5]
+        params:
+          P2: LED_43
+          P4: LED_42
+      led_44:
+        what: ceoloide/led_sk6812mini-e
+        where: matrix_twelve_bottom
+        adjust:
+          shift: [0, 5]
+        params:
+          P2: LED_44
+          P4: LED_43
+      led_45:
+        what: ceoloide/led_sk6812mini-e
+        where: matrix_twelve_home
+        adjust:
+          shift: [0, 5]
+        params:
+          P2: LED_45
+          P4: LED_44
+      led_46:
+        what: ceoloide/led_sk6812mini-e
+        where: matrix_twelve_top
+        adjust:
+          shift: [0, 5]
+        params:
+          P2: LED_46
+          P4: LED_45
+
+      # === MCU (ceoloide nRF52840 SuperMini) ===
+      mcu:
+        what: ceoloide/mcu_supermini_nrf52840
+        where:
+          ref: matrix_two_home
+          shift: [0, 11.525]
+        params:
+          side: F
+          reverse_mount: false
+          include_extra_pins: false
+          P1: P1
+          P0: P0
+          P14: P14
+          P20: P20
+          P2: P2
+          P3: P3
+          P4: P4
+          P5: P5
+          P6: P6
+          P7: P7
+          P8: P8
+          P9: P9
+          P10: P10
+          P15: P15
+          P16: P16
+          P18: P18
+          P19: P19
+          P21: P21
+
+      # === ROTARY ENCODER (ceoloide EC11/EC12) ===
+      rotary:
+        what: ceoloide/rotary_encoder_ec11_ec12
+        where:
+          ref: matrix_twelve_top
+          shift: [0, 0]
+        params:
+          side: F
+          A: P13
+          B: P12
+          C: GND
+          S1: P10
+          S2: GND
+
+      # === POWER SWITCH (ceoloide SMD side switch) ===
+      power:
+        what: ceoloide/power_switch_smd_side
+        where:
+          ref: matrix_three_top
+          shift: [9.525, 7.5]
+          rotate: 90
+        params:
+          side: F
+          from: BAT_P
+          to: RAW
+
+      # === RESET SWITCH (ceoloide THT top switch) ===
+      reset:
+        what: ceoloide/reset_switch_tht_top
+        where:
+          ref: matrix_three_home
+          shift: [9.525, 9.525]
+        params:
+          side: F
+          from: GND
+          to: RST
+
+      # === BATTERY CONNECTOR (ceoloide JST-PH 2-pin) ===
+      battery:
+        what: ceoloide/battery_connector_jst_ph_2
+        where:
+          ref: matrix_four_home
+          shift: [9.525, 9.525]
+          rotate: 90
+        params:
+          side: F
+          BAT_P: BAT_P
+          BAT_N: GND

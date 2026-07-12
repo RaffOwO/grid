@@ -1,0 +1,11 @@
+# KiCad
+*.lck
+~$*
+*.bak
+*.tmp
+_autosave-*
+*-backups
+*.kicad_pcb-bak
+
+# Ergogen
+output/debug/
