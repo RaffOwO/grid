@@ -19,7 +19,6 @@ points:
   key:
     padding: -U
     spread: U
-    bind: 3
   zones:
     matrix:
       anchor:
