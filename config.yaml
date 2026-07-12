@@ -188,6 +188,9 @@ outlines:
         ref: matrix_twelve_home
         shift: [0, U]
       radius: 9.25
+    - what: outline
+      name: panel
+      fillet: 2.5
 
 pcbs:
   main:
