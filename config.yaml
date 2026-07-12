@@ -188,8 +188,6 @@ outlines:
         ref: matrix_twelve_home
         shift: [0, U]
       radius: 9.25
-      expand: 2.5
-      joints: 0
 
 pcbs:
   main:
