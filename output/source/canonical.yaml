@@ -1,0 +1,747 @@
+meta:
+    author: Unknown
+    version: v1.0.0
+units: null
+points:
+    key:
+        padding: '-U'
+        spread: U
+    zones:
+        matrix:
+            anchor:
+                shift:
+                    - 50
+                    - -42.85
+            columns:
+                one:
+                    key:
+                        pin: P1
+                    rows:
+                        top: null
+                        home: null
+                        bottom: null
+                two:
+                    key:
+                        pin: P0
+                    rows:
+                        top: null
+                        home: null
+                        bottom: null
+                three:
+                    key:
+                        pin: P14
+                    rows:
+                        top: null
+                        home: null
+                        bottom: null
+                four:
+                    key:
+                        pin: P20
+                    rows:
+                        top: null
+                        home: null
+                        bottom: null
+                five:
+                    key:
+                        pin: P2
+                    rows:
+                        top: null
+                        home: null
+                        bottom: null
+                six:
+                    key:
+                        pin: P3
+                    rows:
+                        top: null
+                        home: null
+                        bottom: null
+                seven:
+                    key:
+                        pin: P4
+                    rows:
+                        top: null
+                        home: null
+                        bottom: null
+                eight:
+                    key:
+                        pin: P5
+                    rows:
+                        top: null
+                        home: null
+                        bottom: null
+                nine:
+                    key:
+                        pin: P6
+                    rows:
+                        top: null
+                        home: null
+                        bottom: null
+                ten:
+                    key:
+                        pin: P7
+                    rows:
+                        top: null
+                        home: null
+                        bottom: null
+                eleven:
+                    key:
+                        pin: P8
+                    rows:
+                        top: null
+                        home: null
+                        bottom: null
+                twelve:
+                    key:
+                        pin: P9
+                    rows:
+                        top: null
+                        home: null
+                        bottom: null
+        modrow:
+            anchor:
+                ref: matrix_one_bottom
+                shift:
+                    - 0
+                    - '-U'
+            columns:
+                one:
+                    key:
+                        spread: U
+                        pin: P1
+                    rows:
+                        mod: null
+                two:
+                    key:
+                        spread: U
+                        pin: P0
+                    rows:
+                        mod: null
+                three:
+                    key:
+                        spread: U
+                        pin: P14
+                    rows:
+                        mod: null
+                four:
+                    key:
+                        spread: 1.5U
+                        pin: P20
+                    rows:
+                        mod: null
+                five:
+                    key:
+                        spread: 1.5U
+                        pin: P2
+                    rows:
+                        mod: null
+                eight:
+                    key:
+                        spread: 1.5U
+                        pin: P5
+                    rows:
+                        mod: null
+                nine:
+                    key:
+                        spread: 1.5U
+                        pin: P6
+                    rows:
+                        mod: null
+                ten:
+                    key:
+                        spread: U
+                        pin: P7
+                    rows:
+                        mod: null
+                eleven:
+                    key:
+                        spread: U
+                        pin: P8
+                    rows:
+                        mod: null
+                twelve:
+                    key:
+                        spread: U
+                        pin: P9
+                    rows:
+                        mod: null
+outlines:
+    bounds:
+        -
+            what: rectangle
+            where: '-matrix_twelve_top'
+            size:
+                - 19.05
+                - 19.05
+            bound: true
+    panel:
+        -
+            what: outline
+            name: bounds
+            expand: -0.275
+        -
+            what: circle
+            where:
+                ref: matrix_twelve_home
+                shift:
+                    - 0
+                    - U
+            radius: 9.25
+        -
+            what: outline
+            name: panel
+            fillet: 2.5
+pcbs:
+    main:
+        template: kicad8
+        outlines:
+            main:
+                outline: panel
+        footprints:
+            switches:
+                what: chocjerzzi
+                where: '-matrix_twelve_top'
+                params:
+                    from: '{{pin}}'
+                    to: '{{colrow}}'
+            diodes:
+                what: ceoloide/diode_tht_sod123
+                where: '-matrix_twelve_top'
+                adjust:
+                    shift:
+                        - 0
+                        - -9.5
+                params:
+                    from: '{{colrow}}'
+                    to: '{{pin}}'
+                    side: B
+                    include_tht: true
+            led_1:
+                what: ceoloide/led_sk6812mini-e
+                where: matrix_one_top
+                adjust:
+                    shift:
+                        - 0
+                        - 5
+                params:
+                    P2: LED_1
+                    P4: LED_DIN
+            led_2:
+                what: ceoloide/led_sk6812mini-e
+                where: matrix_one_home
+                adjust:
+                    shift:
+                        - 0
+                        - 5
+                params:
+                    P2: LED_2
+                    P4: LED_1
+            led_3:
+                what: ceoloide/led_sk6812mini-e
+                where: matrix_one_bottom
+                adjust:
+                    shift:
+                        - 0
+                        - 5
+                params:
+                    P2: LED_3
+                    P4: LED_2
+            led_4:
+                what: ceoloide/led_sk6812mini-e
+                where: modrow_one_mod
+                adjust:
+                    shift:
+                        - 0
+                        - 5
+                params:
+                    P2: LED_4
+                    P4: LED_3
+            led_5:
+                what: ceoloide/led_sk6812mini-e
+                where: modrow_two_mod
+                adjust:
+                    shift:
+                        - 0
+                        - 5
+                params:
+                    P2: LED_5
+                    P4: LED_4
+            led_6:
+                what: ceoloide/led_sk6812mini-e
+                where: matrix_two_bottom
+                adjust:
+                    shift:
+                        - 0
+                        - 5
+                params:
+                    P2: LED_6
+                    P4: LED_5
+            led_7:
+                what: ceoloide/led_sk6812mini-e
+                where: matrix_two_home
+                adjust:
+                    shift:
+                        - 0
+                        - 5
+                params:
+                    P2: LED_7
+                    P4: LED_6
+            led_8:
+                what: ceoloide/led_sk6812mini-e
+                where: matrix_two_top
+                adjust:
+                    shift:
+                        - 0
+                        - 5
+                params:
+                    P2: LED_8
+                    P4: LED_7
+            led_9:
+                what: ceoloide/led_sk6812mini-e
+                where: matrix_three_top
+                adjust:
+                    shift:
+                        - 0
+                        - 5
+                params:
+                    P2: LED_9
+                    P4: LED_8
+            led_10:
+                what: ceoloide/led_sk6812mini-e
+                where: matrix_three_home
+                adjust:
+                    shift:
+                        - 0
+                        - 5
+                params:
+                    P2: LED_10
+                    P4: LED_9
+            led_11:
+                what: ceoloide/led_sk6812mini-e
+                where: matrix_three_bottom
+                adjust:
+                    shift:
+                        - 0
+                        - 5
+                params:
+                    P2: LED_11
+                    P4: LED_10
+            led_12:
+                what: ceoloide/led_sk6812mini-e
+                where: modrow_three_mod
+                adjust:
+                    shift:
+                        - 0
+                        - 5
+                params:
+                    P2: LED_12
+                    P4: LED_11
+            led_13:
+                what: ceoloide/led_sk6812mini-e
+                where: modrow_four_mod
+                adjust:
+                    shift:
+                        - 0
+                        - 5
+                params:
+                    P2: LED_13
+                    P4: LED_12
+            led_14:
+                what: ceoloide/led_sk6812mini-e
+                where: matrix_four_bottom
+                adjust:
+                    shift:
+                        - 0
+                        - 5
+                params:
+                    P2: LED_14
+                    P4: LED_13
+            led_15:
+                what: ceoloide/led_sk6812mini-e
+                where: matrix_four_home
+                adjust:
+                    shift:
+                        - 0
+                        - 5
+                params:
+                    P2: LED_15
+                    P4: LED_14
+            led_16:
+                what: ceoloide/led_sk6812mini-e
+                where: matrix_four_top
+                adjust:
+                    shift:
+                        - 0
+                        - 5
+                params:
+                    P2: LED_16
+                    P4: LED_15
+            led_17:
+                what: ceoloide/led_sk6812mini-e
+                where: matrix_five_top
+                adjust:
+                    shift:
+                        - 0
+                        - 5
+                params:
+                    P2: LED_17
+                    P4: LED_16
+            led_18:
+                what: ceoloide/led_sk6812mini-e
+                where: matrix_five_home
+                adjust:
+                    shift:
+                        - 0
+                        - 5
+                params:
+                    P2: LED_18
+                    P4: LED_17
+            led_19:
+                what: ceoloide/led_sk6812mini-e
+                where: matrix_five_bottom
+                adjust:
+                    shift:
+                        - 0
+                        - 5
+                params:
+                    P2: LED_19
+                    P4: LED_18
+            led_20:
+                what: ceoloide/led_sk6812mini-e
+                where: modrow_five_mod
+                adjust:
+                    shift:
+                        - 0
+                        - 5
+                params:
+                    P2: LED_20
+                    P4: LED_19
+            led_21:
+                what: ceoloide/led_sk6812mini-e
+                where: matrix_six_bottom
+                adjust:
+                    shift:
+                        - 0
+                        - 5
+                params:
+                    P2: LED_21
+                    P4: LED_20
+            led_22:
+                what: ceoloide/led_sk6812mini-e
+                where: matrix_six_home
+                adjust:
+                    shift:
+                        - 0
+                        - 5
+                params:
+                    P2: LED_22
+                    P4: LED_21
+            led_23:
+                what: ceoloide/led_sk6812mini-e
+                where: matrix_six_top
+                adjust:
+                    shift:
+                        - 0
+                        - 5
+                params:
+                    P2: LED_23
+                    P4: LED_22
+            led_24:
+                what: ceoloide/led_sk6812mini-e
+                where: matrix_seven_top
+                adjust:
+                    shift:
+                        - 0
+                        - 5
+                params:
+                    P2: LED_24
+                    P4: LED_23
+            led_25:
+                what: ceoloide/led_sk6812mini-e
+                where: matrix_seven_home
+                adjust:
+                    shift:
+                        - 0
+                        - 5
+                params:
+                    P2: LED_25
+                    P4: LED_24
+            led_26:
+                what: ceoloide/led_sk6812mini-e
+                where: matrix_seven_bottom
+                adjust:
+                    shift:
+                        - 0
+                        - 5
+                params:
+                    P2: LED_26
+                    P4: LED_25
+            led_27:
+                what: ceoloide/led_sk6812mini-e
+                where: modrow_eight_mod
+                adjust:
+                    shift:
+                        - 0
+                        - 5
+                params:
+                    P2: LED_27
+                    P4: LED_26
+            led_28:
+                what: ceoloide/led_sk6812mini-e
+                where: matrix_eight_bottom
+                adjust:
+                    shift:
+                        - 0
+                        - 5
+                params:
+                    P2: LED_28
+                    P4: LED_27
+            led_29:
+                what: ceoloide/led_sk6812mini-e
+                where: matrix_eight_home
+                adjust:
+                    shift:
+                        - 0
+                        - 5
+                params:
+                    P2: LED_29
+                    P4: LED_28
+            led_30:
+                what: ceoloide/led_sk6812mini-e
+                where: matrix_eight_top
+                adjust:
+                    shift:
+                        - 0
+                        - 5
+                params:
+                    P2: LED_30
+                    P4: LED_29
+            led_31:
+                what: ceoloide/led_sk6812mini-e
+                where: matrix_nine_top
+                adjust:
+                    shift:
+                        - 0
+                        - 5
+                params:
+                    P2: LED_31
+                    P4: LED_30
+            led_32:
+                what: ceoloide/led_sk6812mini-e
+                where: matrix_nine_home
+                adjust:
+                    shift:
+                        - 0
+                        - 5
+                params:
+                    P2: LED_32
+                    P4: LED_31
+            led_33:
+                what: ceoloide/led_sk6812mini-e
+                where: matrix_nine_bottom
+                adjust:
+                    shift:
+                        - 0
+                        - 5
+                params:
+                    P2: LED_33
+                    P4: LED_32
+            led_34:
+                what: ceoloide/led_sk6812mini-e
+                where: modrow_nine_mod
+                adjust:
+                    shift:
+                        - 0
+                        - 5
+                params:
+                    P2: LED_34
+                    P4: LED_33
+            led_35:
+                what: ceoloide/led_sk6812mini-e
+                where: modrow_ten_mod
+                adjust:
+                    shift:
+                        - 0
+                        - 5
+                params:
+                    P2: LED_35
+                    P4: LED_34
+            led_36:
+                what: ceoloide/led_sk6812mini-e
+                where: matrix_ten_bottom
+                adjust:
+                    shift:
+                        - 0
+                        - 5
+                params:
+                    P2: LED_36
+                    P4: LED_35
+            led_37:
+                what: ceoloide/led_sk6812mini-e
+                where: matrix_ten_home
+                adjust:
+                    shift:
+                        - 0
+                        - 5
+                params:
+                    P2: LED_37
+                    P4: LED_36
+            led_38:
+                what: ceoloide/led_sk6812mini-e
+                where: matrix_ten_top
+                adjust:
+                    shift:
+                        - 0
+                        - 5
+                params:
+                    P2: LED_38
+                    P4: LED_37
+            led_39:
+                what: ceoloide/led_sk6812mini-e
+                where: matrix_eleven_top
+                adjust:
+                    shift:
+                        - 0
+                        - 5
+                params:
+                    P2: LED_39
+                    P4: LED_38
+            led_40:
+                what: ceoloide/led_sk6812mini-e
+                where: matrix_eleven_home
+                adjust:
+                    shift:
+                        - 0
+                        - 5
+                params:
+                    P2: LED_40
+                    P4: LED_39
+            led_41:
+                what: ceoloide/led_sk6812mini-e
+                where: matrix_eleven_bottom
+                adjust:
+                    shift:
+                        - 0
+                        - 5
+                params:
+                    P2: LED_41
+                    P4: LED_40
+            led_42:
+                what: ceoloide/led_sk6812mini-e
+                where: modrow_eleven_mod
+                adjust:
+                    shift:
+                        - 0
+                        - 5
+                params:
+                    P2: LED_42
+                    P4: LED_41
+            led_43:
+                what: ceoloide/led_sk6812mini-e
+                where: modrow_twelve_mod
+                adjust:
+                    shift:
+                        - 0
+                        - 5
+                params:
+                    P2: LED_43
+                    P4: LED_42
+            led_44:
+                what: ceoloide/led_sk6812mini-e
+                where: matrix_twelve_bottom
+                adjust:
+                    shift:
+                        - 0
+                        - 5
+                params:
+                    P2: LED_44
+                    P4: LED_43
+            led_45:
+                what: ceoloide/led_sk6812mini-e
+                where: matrix_twelve_home
+                adjust:
+                    shift:
+                        - 0
+                        - 5
+                params:
+                    P2: LED_45
+                    P4: LED_44
+            mcu:
+                what: nrf52840
+                where:
+                    ref: matrix_two_home
+                    shift:
+                        - 0
+                        - 11.525
+                params:
+                    orientation: down
+                    P1: P1
+                    P0: P0
+                    P14: P14
+                    P20: P20
+                    P2: P2
+                    P3: P3
+                    P4: P4
+                    P5: P5
+                    P6: P6
+                    P7: P7
+                    P8: P8
+                    P9: P9
+                    P10: P10
+                    P15: P15
+                    P16: P16
+                    P18: P18
+                    P19: P19
+                    P21: P21
+                    RAW: BAT_P
+                    GND: GND
+                    BPOS: BAT_P
+                    BNEG: GND
+            rotary:
+                what: ceoloide/rotary_encoder_ec11_ec12
+                where:
+                    ref: matrix_twelve_home
+                    shift:
+                        - 0
+                        - U
+                params:
+                    side: F
+                    A: P13
+                    B: P12
+                    C: GND
+                    S1: P10
+                    S2: GND
+            power:
+                what: ceoloide/power_switch_smd_side
+                where:
+                    ref: matrix_three_top
+                    shift:
+                        - 9.525
+                        - 7.5
+                    rotate: 90
+                params:
+                    side: F
+                    from: BAT_P
+                    to: RAW
+            reset:
+                what: ceoloide/reset_switch_tht_top
+                where:
+                    ref: matrix_three_home
+                    shift:
+                        - 9.525
+                        - 9.525
+                params:
+                    side: F
+                    from: GND
+                    to: RST
+            battery:
+                what: ceoloide/battery_connector_jst_ph_2
+                where:
+                    ref: matrix_four_home
+                    shift:
+                        - 9.525
+                        - 9.525
+                    rotate: 90
+                params:
+                    side: F
+                    BAT_P: BAT_P
+                    BAT_N: GND

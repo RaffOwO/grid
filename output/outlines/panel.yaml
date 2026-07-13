@@ -1,0 +1,135 @@
+models:
+    export:
+        models:
+            a:
+                models:
+                    a:
+                        models:
+                            '0':
+                                paths:
+                                    ShapeLine3_Bottom:
+                                        type: line
+                                        origin:
+                                            - 43.25
+                                            - -33.6
+                                        end:
+                                            - 259.75
+                                            - -33.60000000000001
+                                    right_Bottom:
+                                        type: line
+                                        origin:
+                                            - 259.75
+                                            - -33.6
+                                        end:
+                                            - 259.75
+                                            - -33.60216240000001
+                                    top_Bottom:
+                                        type: line
+                                        origin:
+                                            - 268.79783760000004
+                                            - -42.650000000000006
+                                        end:
+                                            - 268.8
+                                            - -42.650000000000006
+                                    ShapeLine2_Top:
+                                        type: line
+                                        origin:
+                                            - 268.8
+                                            - -106.75
+                                        end:
+                                            - 268.8
+                                            - -42.650000000000006
+                                    ShapeLine1_Top:
+                                        type: line
+                                        origin:
+                                            - 43.25
+                                            - -109.25
+                                        end:
+                                            - 266.3
+                                            - -109.25
+                                    ShapeLine4_Bottom:
+                                        type: line
+                                        origin:
+                                            - 40.75
+                                            - -106.75
+                                        end:
+                                            - 40.75
+                                            - -36.1
+                                origin:
+                                    - 0
+                                    - 0
+                        origin:
+                            - 0
+                            - 0
+                    b:
+                        paths:
+                            circle:
+                                type: arc
+                                origin:
+                                    - 259.55
+                                    - -42.85000000000001
+                                radius: 9.25
+                                startAngle: 361.2389242076522
+                                endAngle: 448.7610757923478
+                        origin:
+                            - 0
+                            - 0
+                origin:
+                    - 0
+                    - 0
+            b:
+                models:
+                    a:
+                        models:
+                            '0':
+                                paths: {}
+                                origin:
+                                    - 0
+                                    - 0
+                        origin:
+                            - 0
+                            - 0
+                    b:
+                        paths: {}
+                        origin:
+                            - 0
+                            - 0
+                origin:
+                    - 0
+                    - 0
+            fillet_2_0:
+                paths:
+                    fillet0:
+                        origin:
+                            - 266.3
+                            - -106.75
+                        radius: 2.5
+                        startAngle: 270
+                        endAngle: 0
+                        type: arc
+                    fillet1:
+                        origin:
+                            - 43.25
+                            - -106.75
+                        radius: 2.5
+                        startAngle: 180
+                        endAngle: 270
+                        type: arc
+                    fillet2:
+                        origin:
+                            - 43.25
+                            - -36.1
+                        radius: 2.5
+                        startAngle: 90
+                        endAngle: 180
+                        type: arc
+                origin:
+                    - 0
+                    - 0
+        origin:
+            - 0
+            - 0
+units: mm
+origin:
+    - 0
+    - 0
