@@ -38,7 +38,6 @@ points:
             top:
             home:
             bottom:
-              bind: [0, 0, 0.5, 0]
         three:
           key:
             pin: P14
@@ -46,7 +45,6 @@ points:
             top:
             home:
             bottom:
-              bind: [0, 0, 0.5, 0]
         four:
           key:
             pin: P20
@@ -54,7 +52,6 @@ points:
             top:
             home:
             bottom:
-              bind: [0, 0, 0.5, 0]
         five:
           key:
             pin: P2
@@ -62,7 +59,6 @@ points:
             top:
             home:
             bottom:
-              bind: [0, 0, 0.5, 0]
         six:
           key:
             pin: P3
@@ -70,7 +66,6 @@ points:
             top:
             home:
             bottom:
-              bind: [0, 0, 0.5, 0]
         seven:
           key:
             pin: P4
@@ -78,7 +73,6 @@ points:
             top:
             home:
             bottom:
-              bind: [0, 0, 0.5, 0]
         eight:
           key:
             pin: P5
@@ -86,7 +80,6 @@ points:
             top:
             home:
             bottom:
-              bind: [0, 0, 0.5, 0]
         nine:
           key:
             pin: P6
@@ -94,7 +87,6 @@ points:
             top:
             home:
             bottom:
-              bind: [0, 0, 0.5, 0]
         ten:
           key:
             pin: P7
@@ -102,7 +94,6 @@ points:
             top:
             home:
             bottom:
-              bind: [0, 0, 0.5, 0]
         eleven:
           key:
             pin: P8
@@ -110,7 +101,6 @@ points:
             top:
             home:
             bottom:
-              bind: [0, 0, 0.5, 0]
         twelve:
           key:
             pin: P9
@@ -118,7 +108,6 @@ points:
             top:
             home:
             bottom:
-              bind: [0, 0, 0.5, 0]
     modrow:
       anchor:
         ref: matrix_one_bottom
@@ -189,12 +178,12 @@ outlines:
   bounds:
     - what: rectangle
       where: -matrix_twelve_top
-      size: [17.5, 17.5]
+      size: [19.05, 19.05]
       bound: true
   panel:
     - what: outline
       name: bounds
-      expand: 0.5
+      expand: -0.275
     - what: circle
       where:
         ref: matrix_twelve_home
