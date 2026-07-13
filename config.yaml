@@ -217,7 +217,7 @@ pcbs:
         what: ceoloide/diode_tht_sod123
         where: -matrix_twelve_top
         adjust:
-          shift: [0, 9.5]
+          shift: [0, -9.5]
         params:
           from: "{{colrow}}"
           to: "{{pin}}"
@@ -615,6 +615,8 @@ pcbs:
           P18: P18
           P19: P19
           P21: P21
+          RAW: BAT_P
+          GND: GND
 
       # === ROTARY ENCODER (ceoloide EC11/EC12) — top-right corner ===
       rotary:
