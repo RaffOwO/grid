@@ -183,6 +183,7 @@ outlines:
   panel:
     - what: outline
       name: bounds
+      expand: 0.5
     - what: circle
       where:
         ref: matrix_twelve_home
